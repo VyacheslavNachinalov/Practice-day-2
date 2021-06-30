@@ -205,7 +205,7 @@ void runTest(int (*testFunction)(),const std::string& testName){
 int main() {
    int source[] = {1,1,2,3,5,8,13,21,34,55,89};
    int dest[] = {1,1,2,3,5,8,13,21,34,55,89};
-   cout << "Result of comparing is " << compareMas(source,dest,10) << endl;
+   std::cout << "Result of comparing is " << compareMas(source,dest,10) << std::endl;
    runTest(testInitByZeroMas,"testInitByZeroMas");
    runTest(testInitMas,"testInitMas");
    runTest(testCopyMas,"testCopyMas");
