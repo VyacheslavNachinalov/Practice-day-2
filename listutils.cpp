@@ -6,10 +6,6 @@ struct Node {
   Node* next;
 };
 
-struct Node2 {
-  int val;
-  Node2 *next2;
-};
 // Èíèöèàëèçàöèè ýëåìåíòà îäíîñâÿçíîãî ñïèñêà íóëÿìè
 
 void init(Node* node) {
