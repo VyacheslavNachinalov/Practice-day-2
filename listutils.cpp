@@ -1,5 +1,6 @@
 #include <iostream>
 
+using namespace std;
 struct Node {
   int val;
   Node* next;
@@ -13,6 +14,7 @@ struct Node2 {
 
 void init(Node* node) {
 	node->val = 0;
+	node->next = NULL;
 }
 
 // Îòîáðàæåíèÿ îäíîñâÿçíîãî ñïèñêà íà ýêðàí
@@ -49,9 +51,9 @@ void copyMas(Node* source, Node* dest) {
   
 
 // Íàïèñàòü ôóíêöèþ ñðàâíåíèå ñïèñêîâ source è dest. Åñëè ñïèñêè ðàâíû 0, åñëè íå ðàâíû -1
-int compareNodes(Node* source, Node2* dest) {
+int compareNodes(Node* source, Node* dest) {
 	Node *element1 = source;
-	Node2 *element2 = dest;
+	Node *element2 = dest;
 	while ((element1 != NULL) and (element2 != NULL))
 	{
 		if(element1->val != element2->val)
@@ -59,7 +61,7 @@ int compareNodes(Node* source, Node2* dest) {
 			return -1;
 		}
 		element1 = element1->next;
-		element2 = element2->next2;
+		element2 = element2->next;
 	}
   return 0;
 }
@@ -104,9 +106,49 @@ int skoFromList(Node* head, int size) {
 
 
 int testSkoFromList() {
+	
   return -1;
 }
 
+int testInit()
+{
+	Node *head = new Node;
+	init (head);
+	if (head->val != 0)
+	{
+		return -1;
+	}
+	return 0;
+}
+
+int testPushNode()
+{
+	Node *head = new Node;
+	init(head);
+	Node node{1};
+	pushNode(head, &node);
+	if ( (head->val != 0) or (head->next->val !=1) )
+	{
+		return -1;
+	}
+	return 0;
+}
+int testcompareNodes()
+{
+	Node *source = new Node;
+	Node *dest = new Node;
+	init (source);
+	init (dest);
+	Node node{1};
+	Node node2{2};
+	pushNode(source, &node);
+	pushNode(dest,&node2);
+	if (compareNodes(source,dest) == 0)
+	{
+		return -1;
+	}
+	return 0;
+}
 
 static void runTest(int (*testFunction)(),const std::string& testName)
 {
@@ -119,10 +161,8 @@ static void runTest(int (*testFunction)(),const std::string& testName)
 
 
 int main() {
-	Node *head = new Node;
-	init(head);
-	head->next = NULL;
-    runTest(testSkoFromList,"testSkoFromList");
-
-
+        runTest(testSkoFromList,"testSkoFromList");
+	runTest(testInit,"testInit");
+	runTest(testPushNode,"testPushNode");
+	runTest(testcompareNodes,"compareNodes");
 }
